@@ -4,7 +4,7 @@ title: Programming with Python
 subtitle: Python lessons for CU libraries
 ---
 
-[Download data](https://github.com/mperignon/2015-08-06-cuboulder/blob/gh-pages/lessons/python-lessons/data.zip?raw=true)
+[Download data](data.zip)
 
 1. [Starting with data](01-intro.html)
 2. [Storing values in lists](02-lists.html)
@@ -28,5 +28,5 @@ subtitle: Python lessons for CU libraries
 > And remember,
 > a week of hard work can sometimes save you an hour of thought.
 > 
-> xkcd: [Automation](https://xkcd.com/1205/)
-> CodingBat: [Test driven development] (http://codingbat.com/)
+> xkcd: [Automation](https://xkcd.com/1205/)<br>
+> CodingBat: [Test driven development](http://codingbat.com/)
