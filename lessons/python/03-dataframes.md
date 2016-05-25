@@ -17,7 +17,7 @@ minutes: 30
 We will continue to use the surveys dataset that we worked with in the last
 exercise. You can reopen it like this:
 
-~~~python
+~~~{.python}
 # first make sure pandas is loaded
 import pandas as pd
 # read in the survey csv
@@ -37,7 +37,7 @@ We use square brackets `[]` to select a subset of a Python object. For example,
 we can select all of the data from the column `species` in the `surveys_df`
 DataFrame by requesting it by name:
 
-~~~python
+~~~{.python}
 surveys_df['species']
 ~~~
 
@@ -49,14 +49,14 @@ surveys_df.species
 
 We can also create a new DataFrame to contain only the subset of data we are interested in:
 
-~~~python
+~~~{.python}
 # create an object named surveys_species that only contains the species column
 surveys_species = surveys_df['species']
 ~~~
 
 We can also use a list of column names as an index to extract all of those columns from the DataFrame. The columns of this subset of data will be in the same order as the list of column names. This is very useful when we need to reorganize our data!
 
-~~~python
+~~~{.python}
 # select the species and plot columns from the DataFrame
 surveys_df[['species', 'plot']]
 # what happens when you flip the order?
@@ -80,14 +80,14 @@ surveys_df[['plot', 'species']]
 > 0. This is different from other tools like R and Matlab that index elements
 > within objects starting at 1.
 > 
-> ~~~python
+> ~~~{.python}
 > # Create a list of numbers:
 > a = [1,2,3,4,5]
 > ~~~
 
 Just as we did with lists in the previous lesson, we use the square brackets `[]` to extract a subset of a DataFrame:
 
-~~~python
+~~~{.python}
 # select the first, second and third rows from the surveys variable
 surveys_df[0:3]
 # select the first 5 rows (rows 0,1,2,3,4)
@@ -106,7 +106,7 @@ copy of our DataFrame to play with so we don't accidentally modify the original 
 > to modify that object using one variable name (for example, `surveys_copy[0:3]=0`), it would change for the
 > other variable name as well (because we would have modified the one and only object!).
 
-~~~python
+~~~{.python}
 # copy the surveys dataframe so we don't modify the original DataFrame
 surveys_copy = surveys_df.copy()
 
@@ -127,7 +127,7 @@ To select a subset of rows AND columns from our DataFrame, we can use the `iloc`
 method. For example, we can select month, day and year (columns 2, 3 and 4 if we
 start counting at 1), like this:
 
-~~~python
+~~~{.python}
 surveys_df.iloc[0:3, 1:4]
 ~~~
 
@@ -145,7 +145,7 @@ ask for 0:3, you are actually telling python to start at index 0 and select rows
 
 Let's explore some other ways to index and select subsets of data:
 
-~~~python
+~~~{.python}
 # select all columns for rows of index values 0 and 10
 surveys_df.loc[[0,10], :]
 # select only three columns of the first row
@@ -160,7 +160,7 @@ surveys_df.loc[0, ['species', 'plot', 'wgt']]
 We can also select a specific data value according to the specific row and
 column location within the data frame using the `iloc` method:
 
-~~~python
+~~~{.python}
 # dat.iloc[row,column]
 surveys_df.iloc[2,6]
 ~~~
@@ -171,7 +171,7 @@ surveys_df.iloc[2,6]
 > ## Test your understanding of indices {.challenge}
 > 
 > 1. What do each of these commands do?
-> ~~~python
+> ~~~{.python}
 > surveys_df[0:3]
 > surveys_df[:5]
 > surveys_df[-1:]
@@ -188,7 +188,7 @@ surveys_df.iloc[2,6]
 We can also select a subset of our data using some criteria. For example, we can
 select all rows that have a year value of 2002:
 
-~~~python
+~~~{.python}
 surveys_df[surveys_df.year == 2002]
 ~~~
 ~~~{.output}
@@ -216,13 +216,13 @@ surveys_df[surveys_df.year == 2002]
 
 We can also select all rows that do *not* contain the year 2002.
 
-~~~python
+~~~{.python}
 surveys_df[surveys_df.year != 2002]
 ~~~
 
 We can use sets of multiple criteria, too:
 
-~~~python
+~~~{.python}
 surveys_df[(surveys_df.year >= 1980) & (surveys_df.year <= 1985)]
 ~~~
 
@@ -261,7 +261,7 @@ surveys_df[(surveys_df.year >= 1980) & (surveys_df.year <= 1985)]
 A mask can be useful to locate where a particular subset of values exist or
 don't exist. Masks are `BOOLEAN` objects. Booleans can only take the values of `true` or `false`:
 
-~~~python
+~~~{.python}
 # set x to 5
 x = 5
 # what does this return?
@@ -286,7 +286,7 @@ null (missing or NaN, for Not-a-Number) data values. We can use the `isnull` met
 Each cell that has a null value will be assigned a value of `True` in the new mask:
 
 
-~~~python
+~~~{.python}
 pd.isnull(surveys_df)
 ~~~
 ~~~{.output}
@@ -311,7 +311,7 @@ pd.isnull(surveys_df)
 To select the rows where there are null values, we can use 
 the mask as an index to subset the data:
 
-~~~python
+~~~{.python}
 # Use the .any method to select the rows (axis=1) with one or more NaN
 surveys_df[pd.isnull(surveys_df).any(axis=1)]
 ~~~
@@ -323,7 +323,7 @@ We can also run `isnull` on a particular column. We are using the Boolean
 object as an index and then asking python to select rows that have a `NaN` value
 for weight:
 
-~~~python
+~~~{.python}
 emptyWeights = surveys_df[pd.isnull(surveys_df).any(axis=1)]['wgt']
 ~~~
 
